@@ -1,0 +1,8 @@
+snort :
+sudo snort -A fast -q -c /etc/snort/rules/local.rules -i enp0s3 -K ascii -k none -y | tail -n 1 -f /var/log/snort/alert > /home/origin/_snort_bot/logs.txt
+
+steril log :
+cat /dev/null>/var/log/snort/alert
+
+monitoring log :
+tail -f /var/log/snort/alert

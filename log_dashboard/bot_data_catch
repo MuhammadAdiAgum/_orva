@@ -1,0 +1,17 @@
+date :
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 5 | awk -F '-' '{system("date -d "$1" +%d-%m-%Y");}'
+
+time : 
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 5 | awk -F '-' '{system("date -d "$2" +%H:%M:%S");}'
+
+id(msg) :
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 4 | tr -d " "
+
+target :
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 3
+
+ip :
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 9
+	
+port :
+	tail -n 1 /var/log/client/snort/log.csv | cut -d "," -f 10
