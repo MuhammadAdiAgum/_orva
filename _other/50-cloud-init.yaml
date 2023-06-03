@@ -1,12 +1,12 @@
 network:
     ethernets:
-        enp0s3:
+        enp0s3: # interface disesuaikan
             addresses:
-            - 192.168.55.11/24
+            - 192.168.55.11/24 # ip baru disesuaikan
             dhcp6: false
             routes:
             - to: default
-              via: 192.168.1.1
+              via: 192.168.1.1 # gateway disesuaikan
             nameservers:
                 addresses:
                 - 8.8.4.4
