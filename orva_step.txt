@@ -6,11 +6,12 @@ https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
 >>> aktifkan root 
     # sudo passwd root
         "ketik password untuk root"
+
 >>> akses login SSH sebagai root 
     # sudo nano /etc/ssh/sshd_config
     >>> cari baris "PermitRootLogin" ubah value menjadi "yes"
         "PermitRootLogin no" menjadi "PermitRootLogin yes"
-    # systemctl restart ssh
+    # sudo systemctl restart ssh
 
 >>> login SSH (dari PC host)
     # sudo ssh root@<ip-server>
