@@ -1,7 +1,7 @@
 >>> instal server (virtual-box) :
 https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
 
-> ---------------------------------------------------------------------------------------
+> -------------------------------------------------------------------------------------------------------------------------------
 >> konfigurasi awal
 >>> aktifkan root 
     # sudo passwd root
@@ -15,8 +15,8 @@ https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
 >>> login SSH (dari PC host)
     # sudo ssh root@<ip-server>
 
-> -----OPSIONAL (UNTUK SERVER VIRTUALBOX)-------------------------------------------------
->> ----LEWATI LANGKAH INI JIKA MENGGUNAKAN SERVER ASLI------------------------------------
+> -----OPSIONAL (UNTUK SERVER VIRTUALBOX)-----------------------------------------------------------------------------------------
+>> ----LEWATI LANGKAH INI JIKA MENGGUNAKAN SERVER ASLI----------------------------------------------------------------------------
 >>> setting IP static (virtualbox) :
     # nano /etc/netplan/50-cloud-init.yaml
     >>> copy script pada halaman berikut dan paste di file "50-cloud-init.yaml" :
@@ -25,7 +25,7 @@ https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
 
 >>> ganti hostname (butuh restart)
     # hostnamectl set-hostname newNameHere
-> ----------------------------------------------------------------------------------------
+> --------------------------------------------------------------------------------------------------------------------------------
 
 >>> update & upgrade
     # apt update
@@ -38,7 +38,7 @@ https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
     # dpkg-reconfigure tzdata
         "Asia -> Makassar"
 
-> -----APP SERVER-------------------------------------------------
+> -----APP SERVER-----------------------------------------------------------------------------------------------------------------
 >>> instalasi snort IDS :
     # locale-gen id_ID.UTF-8
     # apt install oinkmaster snort snort-common snort-rules-default snort-doc
