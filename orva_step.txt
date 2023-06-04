@@ -5,44 +5,59 @@ https://linux.how2shout.com/how-to-install-ubuntu-22-04-server-on-virtualbox/
 >> konfigurasi awal
 
 >>> aktifkan root 
-    sudo passwd root
+    # sudo passwd root
         "ketik password untuk root"
 >>> akses login SSH sebagai root 
-    sudo nano /etc/ssh/sshd_config
+    # sudo nano /etc/ssh/sshd_config
     >>> cari baris "PermitRootLogin" ubah value menjadi "yes"
         "PermitRootLogin no" menjadi "PermitRootLogin yes"
-    systemctl restart ssh
+    # systemctl restart ssh
 
 >>> login SSH (dari PC host)
-    sudo ssh root@<ip-server>
+    # sudo ssh root@<ip-server>
 
 > -----OPSIONAL (UNTUK SERVER VIRTUALBOX)-------------------------------------------------
 >> ----LEWATI LANGKAH INI JIKA MENGGUNAKAN SERVER ASLI------------------------------------
 >>> setting IP static (virtualbox) :
-    nano /etc/netplan/50-cloud-init.yaml
+    # nano /etc/netplan/50-cloud-init.yaml
     >>> copy script pada halaman berikut dan paste di file "50-cloud-init.yaml" :
         https://raw.githubusercontent.com/orva-556/orva/master/_other/50-cloud-init.yaml
-    netplan apply
+    # netplan apply
 
 >>> ganti hostname (butuh restart)
-    hostnamectl set-hostname newNameHere
+    # hostnamectl set-hostname newNameHere
 > ----------------------------------------------------------------------------------------
 
 >>> update & upgrade
-    apt update
-    apt upgrade (opsional)
+    # apt update
+    # apt upgrade (opsional)
 
 >>> install net-tools
-    apt install net-tools
+    # apt install net-tools
 
 >>> konfigurasi waktu (jika waktu tidak sesuai) :
-    dpkg-reconfigure tzdata
+    # dpkg-reconfigure tzdata
         "Asia -> Makassar"
 
 sampe sini> -----APP SERVER-------------------------------------------------
 >>> instalasi snort IDS :
-    locale-gen id_ID.UTF-8
-    apt install oinkmaster snort snort-common snort-rules-default snort-doc
+    # locale-gen id_ID.UTF-8
+    # apt install oinkmaster snort snort-common snort-rules-default snort-doc
+
+>>> konfigurasi snort IDS :
+    # nano /etc/default/snort
+    >>> tambahkan "-y" di dalam variabel "PARAMS" kemudian save
+    # nano /etc/snort/snort.conf
+    >>> scroll kebagian bawah, komentari semua rules bawaan snort kecuali "local.rules"
+    >>> tambahkan script berikut di baris terakhir untuk membuat output CSV :
+        output alert_csv: /var/log/snort/alert.csv id,timestamp,msg,src,srcport,dst,dstport,proto,tcpflags,sig_id,sig_rev,ethsrc,ethdst,ethlen
+
+>>> konfigurasi rules
+    # nano /etc/snort/rules/local.rules
+    
+
+
+
 
 >>> setting snort rules :
 nano /etc/snort/rules/local.rules
